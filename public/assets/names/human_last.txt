@@ -43,3 +43,6 @@ Grim
 Dark
 Foster
 Hammer
+Stern
+Devil
+Fletch

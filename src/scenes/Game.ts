@@ -51,7 +51,9 @@ export default class Demo extends Phaser.Scene {
     super('GameScene');
     this.races = ["Human", "Dwarf", "Elf", "Skel", "Dragonblud", "Gnome", "Hobbo"]
     this.nameBases = ["wise","snake","son","thorn","mander","storm","lake","trim"];
-    this.adjectives = ["Forlorn", "Gaunt", "Stout", "Terrible", "Clumsy", "Lucky", "Demonspawn", "Ugly", "Shifty", "Forked-Tongued"]
+    this.adjectives = ["Forlorn", "Gaunt", "Stout", "Terrible", "Clumsy", "Lucky", "Demonspawn", "Ugly",
+         "Shifty", "Forked-Tongued","Stingy","Worrywort","Wind-swept","Mean-sprited","Brave","Ashen","Mute","Crestfallen",
+         "Lithe","Lusty"]
     
     // particular adventurer attributes
     // this.stats = this.RollStats();
@@ -73,6 +75,7 @@ export default class Demo extends Phaser.Scene {
   }
 
   create() {
+    this.add.text(20, 20, "(reload for a fresh adventurer)", { fontFamily: 'Sans-serif', fontSize: 12 });
     this.race = "Human"; //temp 
     this.firstNames = this.TextToArray(this.race+'_first');
     this.lastNames = this.TextToArray(this.race + '_last');
@@ -105,7 +108,7 @@ export default class Demo extends Phaser.Scene {
     var name = "";
 
     // firstname
-    if (Math.RND.frac() < .7) {
+    if (Math.RND.frac() < .8) {
       if (Math.RND.frac() < .8) name = Utils.Array.GetRandom(this.firstNames);
       else name = this.CapitalizeFirstLetter(new NameGen.Generator('Dd').toString());
     }
@@ -121,13 +124,14 @@ export default class Demo extends Phaser.Scene {
       // Add a syllable to last name
       if (Math.RND.frac() < .6) name += Utils.Array.GetRandom(this.lastNames).toLowerCase();
     }
+    // if somehow there's still no name, force one
+    if (name == "") name = Utils.Array.GetRandom(this.firstNames);
 
     // Add modifiers/adjectives (e.g. "the clumsy") TODO make them descriptive based on stat rolls
     if (Math.RND.frac() < .2) {
        name += " the " + Utils.Array.GetRandom(this.adjectives);
     }
 
-    if( name == "") name = Utils.Array.GetRandom(this.firstNames);
     return name;
   }
 
@@ -156,7 +160,7 @@ export default class Demo extends Phaser.Scene {
     let adjective = "";
 
     stats.forEach(stat => {
-      // which stat is biggest outlier? 16+ or 6-
+      // which stat is biggest outlier? 16+ or 6- -- could also reroll stat based on modifier (but that would throw off random distribution)
       
     });
     return adjective;
