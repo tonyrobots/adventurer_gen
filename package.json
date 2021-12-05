@@ -29,6 +29,8 @@
     "vite": "^2.0.0-beta.65"
   },
   "dependencies": {
-    "@dice-roller/rpg-dice-roller": "^5.1.0"
+    "@dice-roller/rpg-dice-roller": "^5.1.0",
+    "rollup": "^2.60.2",
+    "webpack": "^5.64.4"
   }
 }
