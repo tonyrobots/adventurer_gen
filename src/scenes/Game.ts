@@ -56,7 +56,8 @@ export default class Demo extends Phaser.Scene {
     this.adjectives = ["Forlorn", "Gaunt", "Stout", "Terrible", "Clumsy", "Lucky", "Demonspawn", "Ugly",
          "Shifty", "Forked-Tongued","Stingy","Anxious","Wind-swept","Gruff","Brave","Ashen","Mute","Crestfallen",
          "Lithe","Lusty","Good","Wily"]
-    this.places = ["the Valley", "the Gorge", "Sorrowmoor", "the Sea", "Wintervale"];
+    this.places = ["the Valley", "the Gorge", "Sorrowmoor", "the Sea", "Wintervale","Lost Haven","the East", "the Outer Wards","the Moors",
+          "the Old Gods", "the Vale"];
     // particular adventurer attributes
     // this.stats = this.RollStats();
     this.stats = [];
