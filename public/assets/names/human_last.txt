@@ -7,7 +7,6 @@ Son
 Man
 Darling
 Ton
-Fall
 Swift
 Sen
 Apple
@@ -50,3 +49,8 @@ Nest
 Fletch
 Fin
 Crest
+Winter
+Spring
+Summer
+Fall
+Pierce

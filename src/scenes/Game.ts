@@ -8,7 +8,7 @@ enum StatCategories {
   Brawn = "BRAWN",
   Prowess = "PROWESS",
   Guile = "GUILE",
-  Mysticism = "MYSTICISM"
+  Spirit = "SPIRIT"
 }
 
 class Stat {
@@ -35,6 +35,8 @@ export default class Demo extends Phaser.Scene {
 
   nameBases: Array<string> = [];
   adjectives: Array<string> = [];
+  places: Array<string> = [];
+
   races: Array<string> = [];
   stat_categories: Array<string> = [];
   nameLabel: any;
@@ -52,9 +54,9 @@ export default class Demo extends Phaser.Scene {
     this.races = ["Human", "Dwarf", "Elf", "Skel", "Dragonblud", "Gnome", "Hobbo"]
     this.nameBases = ["wise","snake","son","thorn","mander","storm","lake","trim"];
     this.adjectives = ["Forlorn", "Gaunt", "Stout", "Terrible", "Clumsy", "Lucky", "Demonspawn", "Ugly",
-         "Shifty", "Forked-Tongued","Stingy","Worrywort","Wind-swept","Gruff","Brave","Ashen","Mute","Crestfallen",
-         "Lithe","Lusty"]
-    
+         "Shifty", "Forked-Tongued","Stingy","Anxious","Wind-swept","Gruff","Brave","Ashen","Mute","Crestfallen",
+         "Lithe","Lusty","Good","Wily"]
+    this.places = ["the Valley", "the Gorge", "Sorrowmoor", "the Sea", "Wintervale"];
     // particular adventurer attributes
     // this.stats = this.RollStats();
     this.stats = [];
@@ -108,8 +110,9 @@ export default class Demo extends Phaser.Scene {
     if (Math.RND.frac() < .9) {
       if (Math.RND.frac() < .8) name = Utils.Array.GetRandom(this.firstNames);
       else name = this.CapitalizeFirstLetter(new NameGen.Generator('Dd').toString());
+    } else { //firstname is a lastname!
+      name += Utils.Array.GetRandom(this.lastNames);
     }
-
     // Add a lastname
     if (Math.RND.frac() < .99) {
       if (name != "") name += " ";
@@ -127,6 +130,9 @@ export default class Demo extends Phaser.Scene {
     // Add modifiers/adjectives (e.g. "the clumsy") TODO make them descriptive based on stat rolls
     if (Math.RND.frac() < .2) {
        name += " the " + Utils.Array.GetRandom(this.adjectives);
+    } else if (Math.RND.frac() < .2) {
+      // origin
+      name += " of " + Utils.Array.GetRandom(this.places);
     }
 
     return name;
