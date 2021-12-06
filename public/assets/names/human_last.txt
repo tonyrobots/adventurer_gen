@@ -45,4 +45,8 @@ Foster
 Hammer
 Stern
 Devil
+Beetle
+Nest
 Fletch
+Fin
+Crest
