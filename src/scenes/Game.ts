@@ -52,7 +52,7 @@ export default class Demo extends Phaser.Scene {
     this.races = ["Human", "Dwarf", "Elf", "Skel", "Dragonblud", "Gnome", "Hobbo"]
     this.nameBases = ["wise","snake","son","thorn","mander","storm","lake","trim"];
     this.adjectives = ["Forlorn", "Gaunt", "Stout", "Terrible", "Clumsy", "Lucky", "Demonspawn", "Ugly",
-         "Shifty", "Forked-Tongued","Stingy","Worrywort","Wind-swept","Mean-sprited","Brave","Ashen","Mute","Crestfallen",
+         "Shifty", "Forked-Tongued","Stingy","Worrywort","Wind-swept","Gruff","Brave","Ashen","Mute","Crestfallen",
          "Lithe","Lusty"]
     
     // particular adventurer attributes
@@ -67,15 +67,12 @@ export default class Demo extends Phaser.Scene {
 
   
   preload() {
-    // this.load.image('logo', 'assets/phaser3-logo.png');
     this.load.text('Human_first', 'assets/names/human_first.txt');
     this.load.text('Human_last', 'assets/names/human_last.txt');
-
-
   }
 
   create() {
-    this.add.text(20, 20, "(reload for a fresh adventurer)", { fontFamily: 'Sans-serif', fontSize: 12 });
+    this.add.text(20, 20, "(reload for a fresh adventurer)", { fontFamily: 'Sans-serif', fontSize: 14 });
     this.race = "Human"; //temp 
     this.firstNames = this.TextToArray(this.race+'_first');
     this.lastNames = this.TextToArray(this.race + '_last');
@@ -86,7 +83,7 @@ export default class Demo extends Phaser.Scene {
 
     this.name = this.CreateName();
     // Display the adventurer
-    this.nameLabel = this.add.text(20, 150, this.name, { fontFamily: 'Alagard', fontSize: 32 });
+    this.nameLabel = this.add.text(20, 150, this.name, { fontFamily: 'Alagard', fontSize: 48 });
     let y = 170
     // for (let i = 0; i < this.stat_categories.length; i++) {
     //   y += 30; //move down a bit
@@ -95,7 +92,7 @@ export default class Demo extends Phaser.Scene {
     // } 
     this.stats.forEach(stat => {
       y += 30; //move down a bit
-      this.add.text(20, y, stat.name + ": " + stat.value.toString(), { fontFamily: 'Alagard', fontSize: 18 });
+      this.add.text(20, y, stat.name + ": " + stat.value.toString(), { fontFamily: 'Alagard', fontSize: 24 });
     });
     
   }
@@ -108,7 +105,7 @@ export default class Demo extends Phaser.Scene {
     var name = "";
 
     // firstname
-    if (Math.RND.frac() < .8) {
+    if (Math.RND.frac() < .9) {
       if (Math.RND.frac() < .8) name = Utils.Array.GetRandom(this.firstNames);
       else name = this.CapitalizeFirstLetter(new NameGen.Generator('Dd').toString());
     }
