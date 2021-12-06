@@ -40,7 +40,7 @@ export default class Demo extends Phaser.Scene {
   races: Array<string> = [];
   stat_categories: Array<string> = [];
   nameLabel: any;
-  generator: NameGen.Generator = new NameGen.Generator("ss");
+  generator: NameGen.Generator = new NameGen.Generator("!<ss|CV|s>");
 
   // particular adventurer
   name: string;
@@ -109,8 +109,13 @@ export default class Demo extends Phaser.Scene {
 
     // firstname
     if (Math.RND.frac() < .9) {
-      if (Math.RND.frac() < .8) name = Utils.Array.GetRandom(this.firstNames);
-      else name = this.CapitalizeFirstLetter(new NameGen.Generator('Dd').toString());
+      var roll = Math.RND.frac();
+      if (roll < .5) name = Utils.Array.GetRandom(this.firstNames); // first name from list
+      else if (roll < .6) name = new NameGen.Generator('!Dd').toString(); // dumb sounding generated name
+      else {
+        name = new NameGen.Generator('!<sv|ss|ssv>'); // regular sounding generated name
+        console.log("weird one");
+      }
     } else { //firstname is a lastname!
       name += Utils.Array.GetRandom(this.lastNames);
     }
@@ -121,6 +126,7 @@ export default class Demo extends Phaser.Scene {
         name += Utils.Array.GetRandom(this.lastNames);
       } else {
         name += this.CapitalizeFirstLetter(this.generator.toString());
+        console.log("generator last name");
       }
       // Add a syllable to last name
       if (Math.RND.frac() < .6) name += Utils.Array.GetRandom(this.lastNames).toLowerCase();
